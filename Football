@@ -1,1 +1,50 @@
 
+import React from 'react';
+
+function Form() {
+  const [rushYards, setRushYards] = useState(0);
+  const [passYards, setPassYards] = useState(0);
+  const [passTD, setPassTD] = useState(0);
+  const [rushTD, setRushTD] = useState(0);
+  const [receptions, setReceptions] = useState(0);
+  const [fs, setFS] = useState(0);
+
+  function calculateFS() {
+    const result = (rushYards * 0.1) + (passYards * 0.04) + (passTD * 4) + (rushTD * 6) + receptions;
+    setFS(result);
+  }
+
+  return (
+    <form>
+      <label>
+        Rush Yards:
+        <input type="number" value={rushYards} onChange={e => setRushYards(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Pass Yard:
+        <input type="number" value={passYards} onChange={e => setPassYards(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Pass TD:
+        <input type="number" value={passTD} onChange={e => setPassTD(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Rush TD:
+        <input type="number" value={rushTD} onChange={e => setRushTD(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Receptions:
+        <input type="number" value={receptions} onChange={e => setReceptions(e.target.value)} />
+      </label>
+      <br />
+      <button onClick={calculateFS}>Calculate</button>
+      <p>FS: {fs}</p>
+    </form>
+  );
+}
+
+export default Form;
